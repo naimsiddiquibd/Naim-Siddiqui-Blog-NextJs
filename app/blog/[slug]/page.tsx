@@ -1,26 +1,27 @@
-import type { Metadata } from "next"
-import { notFound } from "next/navigation"
-import Image from "next/image"
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { CalendarDays, Clock, ArrowLeft, Share2, BookmarkPlus, Twitter, Facebook, Linkedin } from "lucide-react"
-import { blogPosts } from "@/lib/blog-data"
-import { Newsletter } from "@/components/newsletter"
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { CalendarDays, Clock, ArrowLeft, Share2, BookmarkPlus, Twitter, Facebook, Linkedin } from "lucide-react";
+import { blogPosts } from "@/lib/blog-data";
+import { Newsletter } from "@/components/newsletter";
 
 interface BlogPostPageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = blogPosts.find((p) => p.slug === params.slug)
+  const { slug } = await params; // Already fixed in previous response
+  const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
     return {
       title: "Post Not Found",
-    }
+    };
   }
 
   return {
@@ -49,23 +50,24 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: post.excerpt,
       images: ["/placeholder.svg?height=630&width=1200"],
     },
-  }
+  };
 }
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug)
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params; // Await params to resolve the slug
+  const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
-  const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3)
+  const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
 
   return (
     <div className="min-h-screen">
@@ -124,8 +126,14 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Featured Image */}
         <div className="max-w-4xl mx-auto">
-          <div className="relative h-64 md:h-96 lg:h-[500px] w-[56rem] mb-12 rounded-2xl overflow-hidden ">
-            <Image src={post.thumbnail || "/placeholder.svg?height=400&width=800"} alt={post.title} fill className="object-cover" priority />
+          <div className="relative h-64 md:h-96 lg:h-[500px] md:w-[56rem] mb-12 rounded-2xl overflow-hidden">
+            <Image
+              src={post.thumbnail || "/placeholder.svg?height=400&width=800"}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
 
@@ -221,7 +229,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                 >
                   <div className="relative h-48">
                     <Image
-                      src={relatedPost.thumbnail || "/placeholder.svg?height=400&width=800"} 
+                      src={relatedPost.thumbnail || "/placeholder.svg?height=400&width=800"}
                       alt={relatedPost.title}
                       fill
                       className="object-cover"
@@ -253,5 +261,5 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Newsletter */}
       <Newsletter />
     </div>
-  )
+  );
 }

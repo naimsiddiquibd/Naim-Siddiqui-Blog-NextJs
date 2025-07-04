@@ -113,7 +113,7 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section */}
-        <section className="mb-16">
+        {/* <section className="mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Meet my Buddy</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -157,7 +157,7 @@ export default function AboutPage() {
               </Card>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* Contact Section */}
         <section className="text-center">

@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   },
   description:
     "Discover the latest insights, stories, and ideas on technology, design, and innovation. Join my community of forward-thinking readers.",
+    icons: {
+    icon: "/favicon.svg",
+  },
   keywords: ["blog", "technology", "design", "innovation", "insights", "stories"],
   authors: [{ name: "NaimSiddiqui Team" }],
   creator: "NaimSiddiqui",
