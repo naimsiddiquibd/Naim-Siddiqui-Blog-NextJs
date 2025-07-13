@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Coffee, Heart, CreditCard, Bitcoin, Copy, Check, ExternalLink } from "lucide-react"
+import { Coffee, Heart, CreditCard, Building2, Copy, Check, ExternalLink } from "lucide-react"
 
 interface DonationModalProps {
   isOpen: boolean
@@ -17,12 +17,12 @@ interface DonationModalProps {
 }
 
 export function DonationModal({ isOpen, onClose, productName }: DonationModalProps) {
-  const [selectedAmount, setSelectedAmount] = useState(5)
+  const [selectedAmount, setSelectedAmount] = useState(50)
   const [customAmount, setCustomAmount] = useState("")
   const [message, setMessage] = useState("")
   const [copiedAddress, setCopiedAddress] = useState("")
 
-  const predefinedAmounts = [3, 5, 10, 25, 50]
+  const predefinedAmounts = [50, 100, 200, 500, 1000]
 
   const copyToClipboard = (text: string, type: string) => {
     navigator.clipboard.writeText(text)
@@ -61,7 +61,7 @@ export function DonationModal({ isOpen, onClose, productName }: DonationModalPro
         <Tabs defaultValue="quick" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="quick">Quick Donation</TabsTrigger>
-            <TabsTrigger value="crypto">Crypto</TabsTrigger>
+            <TabsTrigger value="bank">Bank Transfer</TabsTrigger>
             <TabsTrigger value="other">Other Ways</TabsTrigger>
           </TabsList>
 
@@ -80,12 +80,12 @@ export function DonationModal({ isOpen, onClose, productName }: DonationModalPro
                     }}
                     className="h-12"
                   >
-                    ${amount}
+                    ৳{amount}
                   </Button>
                 ))}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="custom-amount">Custom Amount ($)</Label>
+                <Label htmlFor="custom-amount">Custom Amount (৳)</Label>
                 <Input
                   id="custom-amount"
                   type="number"
@@ -114,68 +114,96 @@ export function DonationModal({ isOpen, onClose, productName }: DonationModalPro
 
             {/* Payment Methods */}
             <div className="space-y-4">
-              <Label className="text-base font-semibold">Payment Method</Label>
+              <Label className="text-base font-semibold">01643471297 (Personal)</Label>
               <div className="grid gap-3">
                 <Button onClick={handlePayPalDonation} className="w-full h-12 bg-blue-600 hover:bg-blue-700">
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  Donate via PayPal - ${customAmount || selectedAmount}
+                  <CreditCard className="mr-2 h-4 w-4" />I have donated via bKash - ৳{customAmount || selectedAmount}
                 </Button>
-                <Button onClick={handleStripeDonation} variant="outline" className="w-full h-12">
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  Donate via Stripe - ${customAmount || selectedAmount}
+                <Button onClick={handleStripeDonation} variant="outline" className="w-full h-12 bg-transparent">
+                  <CreditCard className="mr-2 h-4 w-4" />I have donated via Rocket - ৳{customAmount || selectedAmount}
                 </Button>
               </div>
             </div>
           </TabsContent>
 
-          <TabsContent value="crypto" className="space-y-6">
+          <TabsContent value="bank" className="space-y-6">
             <div className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Send cryptocurrency donations to the addresses below. Click to copy the address.
+                Send bank transfers to the accounts below. Click to copy the account number.
               </p>
 
               <div className="grid gap-4">
                 <Card
                   className="cursor-pointer hover:bg-muted/50 transition-colors"
-                  onClick={() => copyToClipboard("1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "bitcoin")}
+                  onClick={() => copyToClipboard("1161260045192", "ebl")}
                 >
                   <CardHeader className="pb-3">
                     <CardTitle className="flex items-center gap-2 text-lg">
-                      <Bitcoin className="h-5 w-5 text-orange-500" />
-                      Bitcoin (BTC)
-                      {copiedAddress === "bitcoin" ? (
+                      <Building2 className="h-5 w-5 text-green-600" />
+                      Eastern Bank PLC (EBL)
+                      {copiedAddress === "ebl" ? (
                         <Check className="h-4 w-4 text-green-500" />
                       ) : (
                         <Copy className="h-4 w-4 text-muted-foreground" />
                       )}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <code className="text-xs bg-muted p-2 rounded block break-all">
-                      1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
-                    </code>
+                  <CardContent className="space-y-2">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="font-medium text-muted-foreground">Account Holder:</p>
+                        <p className="font-mono">NAIM SIDDIQUI PRINCE</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-muted-foreground">Branch:</p>
+                        <p>Banani Branch</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-muted-foreground">Account Number:</p>
+                        <code className="text-xs bg-muted p-1 rounded">1161260045192</code>
+                      </div>
+                      <div>
+                        <p className="font-medium text-muted-foreground">Routing Number:</p>
+                        <code className="text-xs bg-muted p-1 rounded">095260439</code>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
 
                 <Card
                   className="cursor-pointer hover:bg-muted/50 transition-colors"
-                  onClick={() => copyToClipboard("0x742d35Cc6634C0532925a3b8D4C9db96590b5c8e", "ethereum")}
+                  onClick={() => copyToClipboard("20502070205192904", "ibl")}
                 >
                   <CardHeader className="pb-3">
                     <CardTitle className="flex items-center gap-2 text-lg">
-                      <div className="w-5 h-5 bg-blue-600 rounded-full" />
-                      Ethereum (ETH)
-                      {copiedAddress === "ethereum" ? (
+                      <Building2 className="h-5 w-5 text-blue-600" />
+                      Islami Bank PLC (IBL)
+                      {copiedAddress === "ibl" ? (
                         <Check className="h-4 w-4 text-green-500" />
                       ) : (
                         <Copy className="h-4 w-4 text-muted-foreground" />
                       )}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <code className="text-xs bg-muted p-2 rounded block break-all">
-                      0x742d35Cc6634C0532925a3b8D4C9db96590b5c8e
-                    </code>
+                  <CardContent className="space-y-2">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="font-medium text-muted-foreground">Account Holder:</p>
+                        <p className="font-mono">NAIM SIDDIQUI PRINCE</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-muted-foreground">Branch:</p>
+                        <p>Uttara Branch</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-muted-foreground">Account Number:</p>
+                        <code className="text-xs bg-muted p-1 rounded">20502070205192904</code>
+                      </div>
+                      <div>
+                        <p className="font-medium text-muted-foreground">Routing Number:</p>
+                        <code className="text-xs bg-muted p-1 rounded">125264639</code>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
@@ -185,7 +213,6 @@ export function DonationModal({ isOpen, onClose, productName }: DonationModalPro
           <TabsContent value="other" className="space-y-6">
             <div className="space-y-4">
               <h3 className="font-semibold">Other Ways to Support</h3>
-
               <div className="grid gap-4">
                 <Card>
                   <CardHeader>
@@ -214,7 +241,7 @@ export function DonationModal({ isOpen, onClose, productName }: DonationModalPro
                     <CardDescription>Sponsor through GitHub's platform</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button asChild variant="outline" className="w-full">
+                    <Button asChild variant="outline" className="w-full bg-transparent">
                       <a href="https://github.com/sponsors/yourusername" target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Become a GitHub Sponsor
