@@ -30,69 +30,77 @@ export interface Product {
 export const products: Product[] = [
   {
     id: "1",
-    slug: "productivity-booster",
-    name: "Productivity Booster",
-    tagline: "Supercharge your browsing productivity",
-    description: "A powerful Chrome extension that helps you stay focused and productive while browsing the web.",
+    slug: "nfiller",
+    name: "nFiller",
+    tagline: "Supercharge your form-filling productivity",
+    description: "A powerful Chrome extension that lets you instantly fill form including Stripe payment fields with realistic test data using keyboard shortcuts.",
     longDescription: `
-      <p>Productivity Booster is the ultimate Chrome extension for anyone looking to maximize their productivity while browsing the web. With advanced features like website blocking, time tracking, and focus modes, you'll never lose track of your goals again.</p>
-      
-      <h3>Why Choose Productivity Booster?</h3>
-      <p>In today's digital world, distractions are everywhere. Social media, news sites, and entertainment platforms can easily derail your focus. Productivity Booster gives you the tools to take control of your browsing habits and stay on track.</p>
-      
-      <h3>Perfect For:</h3>
-      <ul>
-        <li>Students preparing for exams</li>
-        <li>Remote workers staying focused</li>
-        <li>Freelancers managing their time</li>
-        <li>Anyone looking to reduce digital distractions</li>
-      </ul>
-    `,
+    <p><strong>nFiller</strong> is a robust and developer-friendly Chrome extension designed to save time and boost productivity by automatically filling forms with test or fake data—including complex forms like <strong>Stripe's payment inputs</strong> that other tools can't handle.</p>
+    
+    <h3>Why Choose nFiller?</h3>
+    <p>Unlike typical fake filler extensions, nFiller is optimized to work seamlessly even with secured payment forms like Stripe. Whether you're testing a checkout flow or demoing a product, nFiller gets the job done instantly—no mouse needed.</p>
+    
+    <h3>Perfect For:</h3>
+    <ul>
+      <li>Developers testing payment flows</li>
+      <li>QA engineers validating form behavior</li>
+      <li>Designers creating prototypes</li>
+      <li>Anyone tired of typing fake data again and again</li>
+    </ul>
+    
+    <h3>Keyboard Shortcuts:</h3>
+    <ul>
+      <li><strong>Windows/Linux:</strong> Ctrl + Shift + F</li>
+      <li><strong>macOS:</strong> Command + Shift + Y</li>
+    </ul>
+  `,
     features: [
-      "Block distracting websites during work hours",
-      "Track time spent on different websites",
-      "Set daily productivity goals",
-      "Focus mode with Pomodoro timer",
-      "Detailed analytics and reports",
-      "Custom website categories",
-      "Break reminders",
-      "Dark mode support",
+      "Fills all standard form fields with realistic dummy data",
+      "Works with secured inputs like Stripe (e.g., 4242 4242 4242 4242)",
+      "Cross-platform keyboard shortcuts",
+      "No configuration required—just install and use",
+      "Lightweight and free",
+      "Privacy-conscious—no data tracking or analytics",
     ],
     screenshots: [
-      "/placeholder.svg?height=400&width=600&text=Dashboard",
-      "/placeholder.svg?height=400&width=600&text=Settings",
-      "/placeholder.svg?height=400&width=600&text=Analytics",
-      "/placeholder.svg?height=400&width=600&text=Focus+Mode",
+      "https://i.ibb.co/C5VPNmjt/Cyberpunk-2077-Bonjourr-Profile-1024x522.png",
+      "https://i.ibb.co/MD0CJh2P/cover-a1b06d54f7.png",
+      "https://i.ibb.co/tpd5ZWnr/web-scraping-chrome-extensions-1.png",
+      "https://i.ibb.co/xKfNVJP8/Purple-Blue-Modern-Colorful-Start-Coding-Youtube-Thumbnail-1.png",
     ],
-    icon: "/placeholder.svg?height=128&width=128&text=PB",
-    category: "Productivity",
-    version: "2.1.0",
-    lastUpdated: "Dec 15, 2023",
-    downloads: 15420,
-    rating: 4.8,
-    reviews: 342,
-    downloadUrl: "https://chrome.google.com/webstore/detail/productivity-booster/example",
-    chromeStoreUrl: "https://chrome.google.com/webstore/detail/productivity-booster/example",
-    githubUrl: "https://github.com/yourusername/productivity-booster",
+    icon: "https://i.ibb.co/BKrsXRgQ/New-Project.png",
+    category: "Developer Tools",
+    version: "1.3.0",
+    lastUpdated: "Jul 15, 2025",
+    downloads: 10,
+    rating: 4.9,
+    reviews: 4,
+    downloadUrl: "https://drive.google.com/file/d/12tIbmUCIteFeZ0dKW96tMlry1MzKFM4I/view?usp=sharing",
+    chromeStoreUrl: "https://chrome.google.com/webstore/detail/nfiller/your-extension-id",
+    githubUrl: "https://github.com/naimsiddiquibd/nfiller",
     featured: true,
-    tags: ["Productivity", "Focus", "Time Management", "Website Blocker"],
-    requirements: ["Chrome 88+", "Storage permission", "Active tab permission"],
+    tags: ["Form Autofill", "Developer Tools", "Stripe Testing", "Productivity"],
+    requirements: ["Chrome 90+", "Storage permission", "Active tab permission"],
     changelog: [
       {
-        version: "2.1.0",
-        date: "Dec 15, 2023",
+        version: "1.3.0",
+        date: "Jul 15, 2025",
         changes: [
-          "Added dark mode support",
-          "Improved analytics dashboard",
-          "Fixed timer synchronization issues",
-          "Added new focus sound options",
+          "Improved compatibility with Stripe Elements",
+          "Added support for macOS shortcut (Cmd+Shift+Y)",
+          "Bug fixes on multi-step forms",
+          "Updated autofill dataset for more realistic data"
         ],
       },
       {
-        version: "2.0.0",
-        date: "Nov 20, 2023",
-        changes: ["Complete UI redesign", "Added Pomodoro timer", "New analytics features", "Performance improvements"],
-      },
+        version: "1.2.0",
+        date: "May 28, 2025",
+        changes: [
+          "Introduced keyboard shortcut for Windows/Linux",
+          "Optimized performance for large DOM structures",
+          "Fixed minor styling issues on injected helper tooltip"
+        ],
+      }
     ],
   },
   {
