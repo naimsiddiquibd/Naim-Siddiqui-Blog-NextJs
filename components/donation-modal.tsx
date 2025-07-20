@@ -102,10 +102,10 @@ export function DonationModal({ isOpen, onClose, productName }: DonationModalPro
 
             {/* Message */}
             <div className="space-y-2">
-              <Label htmlFor="message">Message (Optional)</Label>
+              <Label htmlFor="message">Message with the Transection ID</Label>
               <Textarea
                 id="message"
-                placeholder="Leave a message of support..."
+                placeholder="Bro, I just donated ৳50 to support your work! Here's my transaction ID: 1234567890"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={3}
@@ -116,10 +116,10 @@ export function DonationModal({ isOpen, onClose, productName }: DonationModalPro
             <div className="space-y-4">
               <Label className="text-base font-semibold">01643471297 (Personal)</Label>
               <div className="grid gap-3">
-                <Button onClick={handlePayPalDonation} className="w-full h-12 bg-blue-600 hover:bg-blue-700">
+                <Button  className="w-full h-12 bg-blue-600 hover:bg-blue-700">
                   <CreditCard className="mr-2 h-4 w-4" />I have donated via bKash - ৳{customAmount || selectedAmount}
                 </Button>
-                <Button onClick={handleStripeDonation} variant="outline" className="w-full h-12 bg-transparent">
+                <Button variant="outline" className="w-full h-12 bg-transparent">
                   <CreditCard className="mr-2 h-4 w-4" />I have donated via Rocket - ৳{customAmount || selectedAmount}
                 </Button>
               </div>
